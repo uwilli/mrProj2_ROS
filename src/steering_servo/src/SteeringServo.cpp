@@ -3,6 +3,7 @@
 namespace steering_servo
 {
 
+
 SteeringServo::SteeringServo(const ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle)
 {
 	if (!readParameters_())
@@ -10,6 +11,8 @@ SteeringServo::SteeringServo(const ros::NodeHandle& nodeHandle) : nodeHandle_(no
 	    ROS_ERROR("Could not read parameters.");
 	    ros::requestShutdown();
 	}
+
+	servo_ = Servo::Servo(13, true); //initialise as steering servo
 
 	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1,
 	                                      &SteeringServo::topicCallback_, this);
@@ -25,9 +28,9 @@ bool SteeringServo::readParameters_()
 }
 
 
-void SteeringServo::topicCallback_()
+void SteeringServo::topicCallback_(const geometry_msgs::Twist& msg)
 {
-  // TODO
+  servo_.writeMs(msg.angular.z);
 }
 
 } /* namespace steering_servo */

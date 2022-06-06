@@ -1,10 +1,11 @@
 #ifndef STEERING_SERVO_HPP
 #define STEERING_SERVO_HPP
 
-//#include "steering_servo/servo.h"
+#include "servo.h"
 
 // Ros
 #include <ros/ros.h>
+#include <geometry_msgs/Twist.h>
 
 // Std
 #include <string>
@@ -22,9 +23,11 @@ private:
 	ros::Subscriber subscriber_;
 	std::string subscriberTopic_;
 
+	Servo servo_;
+
 	// Functions
 	bool readParameters_();
-	void topicCallback_(); //argument: const ... received message
+	void topicCallback_(const geometry_msgs::Twist& msg); //argument: const ... received message
 };
 
 } /* namespace steering_servo */
