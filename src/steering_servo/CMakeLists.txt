@@ -33,11 +33,15 @@ catkin_package(
 ## Build ##
 ###########
 
+# Pigpiod: Run classes raspiPigpio etc with define DAEMON for ability of running multiple programs simultaneously
+add_compile_definitions(DAEMON)
+
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
 include_directories(
 	include
   		${catkin_INCLUDE_DIRS}
+  		~/mrProj2/source/inc
 )
 
 ## Declare a C++ executable
@@ -46,11 +50,16 @@ include_directories(
 add_executable(${PROJECT_NAME}
 	src/steering_servo_node.cpp
 	src/SteeringServo.cpp
+	~/mrProj2/source/src/servo.cpp
+	~/mrProj2/source/src/pigpioPwm.cpp
+	~/mrProj2/source/src/raspiPigpio.cpp
 )
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(${PROJECT_NAME}
    ${catkin_LIBRARIES}
+   pigpio
+   ${pigpiod_if2_LIBRARY}
  )
 
 #############
