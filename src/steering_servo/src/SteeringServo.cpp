@@ -14,7 +14,7 @@ SteeringServo::SteeringServo(const ros::NodeHandle& nodeHandle) : nodeHandle_(no
 	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1,
 	                                      &SteeringServo::topicCallback_, this);
 
-	ROS_INFO("Successfully launched node.");
+	ROS_INFO("Successfully launched steering_servo node.");
 }
 
 
