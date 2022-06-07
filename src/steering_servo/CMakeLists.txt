@@ -37,6 +37,7 @@ catkin_package(
 
 # Pigpiod: Run classes raspiPigpio etc with define DAEMON for ability of running multiple programs simultaneously
 add_compile_definitions(DAEMON)
+add_compile_definitions(ROS)
 
 ## Specify additional locations of header files
 ## Your package locations should be listed before other locations
