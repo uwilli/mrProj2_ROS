@@ -6,13 +6,11 @@ namespace steering_servo
 
 SteeringServo::SteeringServo(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle), servo_(13, true) // this is called an initializer list
 {
-	/*
 	if (!readParameters_())
 	{
 	    ROS_ERROR("Could not read parameters.");
 	    ros::requestShutdown();
 	}
-	*/
 
 	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1,
 	                                      &SteeringServo::topicCallback_, this);
@@ -23,14 +21,16 @@ SteeringServo::SteeringServo(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHand
 
 bool SteeringServo::readParameters_()
 {
-  if (!nodeHandle_.getParam("subscriber_topic", subscriberTopic_)) return false;
-  return true;
+	if (!nodeHandle_.getParam("subscriber_topic", subscriberTopic_)) return false;
+	return true;
 }
 
 
 void SteeringServo::topicCallback_(const geometry_msgs::Twist& msg)
 {
-  servo_.writeMs(msg.angular.z);
+	float percent = msg.angular.z;
+
+	servo_.writeMs(msg.angular.z);
 }
 
 } /* namespace steering_servo */

@@ -1,0 +1,5 @@
+<launch>
+	<node name="steering_servo" pkg="steering_servo" type="steering_servo" output="screen">
+		<rosparam command="load" file="$find(steering_servo)/config/steering_servo.yaml" />
+	</node>
+</launch>

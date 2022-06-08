@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(steering_servo)
+project(mrcar_hardware_ctrl)
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
@@ -86,7 +86,7 @@ target_link_libraries(${PROJECT_NAME}
    ${catkin_LIBRARIES}
    pigpio
    ${pigpiod_if2_LIBRARY}
- )
+)
 
 #############
 ## Install ##
@@ -96,5 +96,5 @@ target_link_libraries(${PROJECT_NAME}
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
 install(TARGETS ${PROJECT_NAME}
 	RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
- )
+)
 
