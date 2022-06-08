@@ -1,4 +1,6 @@
 <launch>
+	<env name="ROSCONSOLE_CONFIG_FILE" value="$(find mrcar_hardware_ctrl)/config/console_output.conf"/>
+
 	<node name="mrcar_hardware_ctrl" pkg="mrcar_hardware_ctrl" type="mrcar_hardware_ctrl" output="screen">
 		<rosparam command="load" file="$(find mrcar_hardware_ctrl)/config/config.yaml" />
 	</node>
