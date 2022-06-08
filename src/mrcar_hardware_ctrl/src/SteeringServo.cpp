@@ -34,9 +34,10 @@ void SteeringServo::topicCallback_(const geometry_msgs::Twist& msg)
 	float percent = msg.angular.z;
 	int ms;
 
+	ROS_DEBUG_STREAM("percent received: " << percent);
+
 	ms = min_ms_ + (max_ms_ - min_ms_)*(percent + 1.0)/2.0;
 
-	ROS_INFO_STREAM("ms written to servo: " << ms);
 	ROS_DEBUG_STREAM("ms written to servo: " << ms);
 
 	servo_.writeMs(ms);
