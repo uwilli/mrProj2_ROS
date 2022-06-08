@@ -1,5 +1,5 @@
 <launch>
 	<node name="mrcar_hardware_ctrl" pkg="mrcar_hardware_ctrl" type="mrcar_hardware_ctrl" output="screen">
-		<rosparam command="load" file="$find(mrcar_hardware_ctrl)config/config.yaml" />
+		<rosparam command="load" file="$(find mrcar_hardware_ctrl)/config/config.yaml" />
 	</node>
 </launch>
