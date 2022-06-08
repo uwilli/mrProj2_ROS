@@ -16,7 +16,7 @@ namespace steering_servo
 class SteeringServo
 {
 public:
-	SteeringServo(const ros::NodeHandle& nodeHandle);
+	SteeringServo(ros::NodeHandle& nodeHandle);
 
 private:
 	ros::NodeHandle& nodeHandle_;
