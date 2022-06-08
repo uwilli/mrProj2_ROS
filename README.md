@@ -70,4 +70,9 @@ Content:
 	$ git config --global alias.st status
 	$ git config --global alias.co checkout
 	$ git config --global alias.ci commit
+	
+	
+## Troubleshooting
+#### Yaml files (param server)
+Only spaces allowed, no tabs!
 

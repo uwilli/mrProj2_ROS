@@ -3,6 +3,6 @@ steering_servo:
     servoMs:
         min_ms: 900
         max_ms: 1700
-	
+
 motor:
     subscriber_topic: cmd_vel
