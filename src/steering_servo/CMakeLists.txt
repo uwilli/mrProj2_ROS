@@ -12,6 +12,28 @@ find_package(catkin REQUIRED COMPONENTS
   geometry_msgs
 )
 
+################################################################
+# find pigpio library and files
+################################################################
+
+## Following find commands are from joan2937 on github, https://github.com/joan2937/pigpio/blob/master/util/Findpigpio.cmake
+# Find the path to the pigpio includes.
+find_path(pigpio_INCLUDE_DIR
+        NAMES pigpio.h pigpiod_if.h pigpiod_if2.h
+        HINTS /usr/local/include)
+
+# Find the pigpio libraries.
+find_library(pigpio_LIBRARY
+        NAMES libpigpio.so
+        HINTS /usr/local/lib)
+find_library(pigpiod_if_LIBRARY
+        NAMES libpigpiod_if.so
+        HINTS /usr/local/lib)
+find_library(pigpiod_if2_LIBRARY
+        NAMES libpigpiod_if2.so
+        HINTS /usr/local/lib)
+##
+
 ###################################
 ## catkin specific configuration ##
 ###################################
@@ -44,6 +66,7 @@ add_compile_definitions(ROS)
 include_directories(
 	include
   		${catkin_INCLUDE_DIRS}
+  		pigpio_INCLUDE_DIR
   		~/mrProj2/source/inc
 )
 
