@@ -6,11 +6,13 @@ namespace steering_servo
 
 SteeringServo::SteeringServo(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle), servo_(13, true) // this is called an initializer list
 {
+	/*
 	if (!readParameters_())
 	{
 	    ROS_ERROR("Could not read parameters.");
 	    ros::requestShutdown();
 	}
+	*/
 
 	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1,
 	                                      &SteeringServo::topicCallback_, this);
