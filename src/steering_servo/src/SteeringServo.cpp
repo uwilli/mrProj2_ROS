@@ -12,12 +12,18 @@ SteeringServo::SteeringServo(const ros::NodeHandle& nodeHandle) : nodeHandle_(no
 	    ros::requestShutdown();
 	}
 
-	servo_ = Servo::Servo(13, true); //initialise as steering servo
+	servo_ = new Servo::Servo(13, true); //initialise as steering servo
 
 	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1,
 	                                      &SteeringServo::topicCallback_, this);
 
 	ROS_INFO("Successfully launched steering_servo node.");
+}
+
+
+SteeringServo::~SteeringServo()
+{
+	delete servo_;
 }
 
 
