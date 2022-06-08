@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package>
+  <name>python_package_template</name>
+  <version>1.0.0</version>
+  <description>Generic python package template</description>
+
+  <maintainer email="urban.willi@stud.fhgr.ch">Urban Willi</maintainer>
+
+  <license>BSD</license>
+
+  <author>Urban Willi</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <!-- <run_depend>geometry_msgs</run_depend> -->
+  <run_depend>rospy</run_depend>
+</package>

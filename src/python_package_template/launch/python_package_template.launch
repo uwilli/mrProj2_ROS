@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<launch>
+	<node name="python_package_template" pkg="python_package_template" type="python_package_template.py" output="screen"/>
+</launch>
