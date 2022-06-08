@@ -4,7 +4,7 @@ namespace steering_servo
 {
 
 
-SteeringServo::SteeringServo(const ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle), servo_(13, true) // this is called an initializer list
+SteeringServo::SteeringServo(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle), servo_(13, true) // this is called an initializer list
 {
 	if (!readParameters_())
 	{
