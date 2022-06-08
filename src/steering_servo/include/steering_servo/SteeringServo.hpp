@@ -17,7 +17,6 @@ class SteeringServo
 {
 public:
 	SteeringServo(const ros::NodeHandle& nodeHandle);
-	~SteeringServo();
 
 private:
 	ros::NodeHandle& nodeHandle_;

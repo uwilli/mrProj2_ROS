@@ -4,7 +4,7 @@ namespace steering_servo
 {
 
 
-SteeringServo::SteeringServo(const ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle)
+SteeringServo::SteeringServo(const ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle), servo_(13, true) // this is called an initializer list
 {
 	if (!readParameters_())
 	{
@@ -12,18 +12,10 @@ SteeringServo::SteeringServo(const ros::NodeHandle& nodeHandle) : nodeHandle_(no
 	    ros::requestShutdown();
 	}
 
-	servo_ = new Servo::Servo(13, true); //initialise as steering servo
-
 	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1,
 	                                      &SteeringServo::topicCallback_, this);
 
 	ROS_INFO("Successfully launched steering_servo node.");
-}
-
-
-SteeringServo::~SteeringServo()
-{
-	delete *servo_;
 }
 
 
