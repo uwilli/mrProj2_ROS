@@ -23,7 +23,7 @@ SteeringServo::SteeringServo(const ros::NodeHandle& nodeHandle) : nodeHandle_(no
 
 SteeringServo::~SteeringServo()
 {
-	delete servo_;
+	delete *servo_;
 }
 
 
