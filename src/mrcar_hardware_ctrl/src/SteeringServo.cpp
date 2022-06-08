@@ -36,6 +36,8 @@ void SteeringServo::topicCallback_(const geometry_msgs::Twist& msg)
 
 	ms = min_ms_ + (max_ms_ - min_ms_)*(percent + 1.0)/2.0;
 
+	ROS_DEBUG_STREAM("ms written to servo: " << ms);
+
 	servo_.writeMs(ms);
 }
 

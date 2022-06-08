@@ -2,8 +2,10 @@
 Ros catkin ws for Mobile Robotics project 2 (FHGR).
 
 
+## Ros commands
 
-
+#### Publish cmd_vel
+	$ rostopic pub /mrcar_hardware_ctrl/cmd_vel geometry_msgs/Twist "{linear: {x: 0, y: 0, z: 0}, angular: {x: 0, y: 0, z: -1}}"
 
 
 ## ROS-Helpers
