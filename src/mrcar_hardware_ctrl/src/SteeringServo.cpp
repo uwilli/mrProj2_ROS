@@ -1,4 +1,4 @@
-#include "steering_servo/SteeringServo.hpp"
+#include "mrcar_hardware_ctrl/SteeringServo.hpp"
 
 namespace steering_servo
 {
@@ -21,7 +21,7 @@ SteeringServo::SteeringServo(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHand
 
 bool SteeringServo::readParameters_()
 {
-	if (!nodeHandle_.getParam("subscriber_topic", subscriberTopic_)) return false;
+	if (!nodeHandle_.getParam("steering_servo/subscriber_topic", subscriberTopic_)) return false;
 	return true;
 }
 
@@ -34,3 +34,4 @@ void SteeringServo::topicCallback_(const geometry_msgs::Twist& msg)
 }
 
 } /* namespace steering_servo */
+

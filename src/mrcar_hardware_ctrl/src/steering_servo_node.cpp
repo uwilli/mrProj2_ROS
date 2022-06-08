@@ -1,9 +1,10 @@
 #include <ros/ros.h>
-#include "steering_servo/SteeringServo.hpp"
+#include "mrcar_hardware_ctrl/SteeringServo.hpp"
+
 
 int main(int argc, char** argv)
 {
-	ros::init(argc, argv, "steering_servo");
+	ros::init(argc, argv, "mrcar_hardware_ctrl");
 	ros::NodeHandle nodeHandle("~");
 
 	steering_servo::SteeringServo steeringServo(nodeHandle);
@@ -11,3 +12,4 @@ int main(int argc, char** argv)
 	ros::spin();
 	return 0;
 }
+
