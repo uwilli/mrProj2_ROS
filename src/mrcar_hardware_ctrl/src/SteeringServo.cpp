@@ -22,6 +22,9 @@ SteeringServo::SteeringServo(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHand
 bool SteeringServo::readParameters_()
 {
 	if (!nodeHandle_.getParam("steering_servo/subscriber_topic", subscriberTopic_)) return false;
+	if (!nodeHandle_.getParam("steering_servo/servo_ms/min_ms", min_ms_)) return false;
+	if (!nodeHandle_.getParam("steering_servo/servo_ms/min_ms", max_ms_)) return false;
+
 	return true;
 }
 
@@ -29,8 +32,11 @@ bool SteeringServo::readParameters_()
 void SteeringServo::topicCallback_(const geometry_msgs::Twist& msg)
 {
 	float percent = msg.angular.z;
+	int ms;
 
-	servo_.writeMs(msg.angular.z);
+	ms = min_ms_ + (max_ms_ - min_ms_)*(percent + 1.0)/2.0;
+
+	servo_.writeMs(ms);
 }
 
 } /* namespace steering_servo */

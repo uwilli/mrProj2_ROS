@@ -1,6 +1,6 @@
 steering_servo:
     subscriber_topic: cmd_vel
-    servoMs:
+    servo_ms:
         min_ms: 900
         max_ms: 1700
 

@@ -23,6 +23,8 @@ private:
 	ros::NodeHandle& nodeHandle_;
 	ros::Subscriber subscriber_;
 	std::string subscriberTopic_;
+	int min_ms_;
+	int max_ms_;
 
 	Servo servo_;
 
