@@ -2,7 +2,7 @@
 <package format="2">
   <name>mrcar_hardware_ctrl</name>
   <version>0.0.0</version>
-  <description>Listener setting servo on mrProj2 (FHGR) to desired position.</description>
+  <description>Package handling hardware control of mrProj1 PCB (FHGR).</description>
   <maintainer email="urban.willi@stud.fhgr.ch">Urban Willi</maintainer>
   <license>BSD</license>
   <author email="urban.willi@stud.fhgr.ch">Urban Willi</author>
