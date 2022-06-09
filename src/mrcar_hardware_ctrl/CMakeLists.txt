@@ -70,25 +70,32 @@ include_directories(
   		~/mrProj2/source/inc
 )
 
+## Specify libraries to link a library or executable target against
+link_libraries(
+   ${catkin_LIBRARIES}
+   pigpio
+   ${pigpiod_if2_LIBRARY}
+)
+
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(${PROJECT_NAME}
+add_executable(steering_servo
 	src/steering_servo_node.cpp
 	src/SteeringServo.cpp
-	src/motor_node.cpp
-	src/Motor.cpp
 	~/mrProj2/source/src/servo.cpp
 	~/mrProj2/source/src/pigpioPwm.cpp
 	~/mrProj2/source/src/raspiPigpio.cpp
 )
 
-## Specify libraries to link a library or executable target against
-target_link_libraries(${PROJECT_NAME}
-   ${catkin_LIBRARIES}
-   pigpio
-   ${pigpiod_if2_LIBRARY}
+add_executable(motor
+	src/motor_node.cpp
+	src/Motor.cpp
+	~/mrProj2/source/src/tb6612fng.cpp
+	~/mrProj2/source/src/pigpioPwm.cpp
+	~/mrProj2/source/src/raspiPigpio.cpp
 )
+
 
 #############
 ## Install ##
@@ -96,7 +103,7 @@ target_link_libraries(${PROJECT_NAME}
 
 ## Mark executables for installation
 ## See http://docs.ros.org/melodic/api/catkin/html/howto/format1/building_executables.html
-install(TARGETS ${PROJECT_NAME}
+install(TARGETS steering_servo motor
 	RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
 )
 
