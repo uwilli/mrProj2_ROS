@@ -12,7 +12,6 @@ Motor::Motor(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle), m3_(3) // t
 		ros::requestShutdown();
 	}
 
-	/* if different namespace needed
 	// Build correct namespace for topic
 	if(subscriberTopic_.empty())
 	{
@@ -24,7 +23,6 @@ Motor::Motor(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle), m3_(3) // t
 	}
 
 	subscriberTopic_ = "/mrcar_hardware_ctrl" + subscriberTopic_;
-	*/
 
 	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1, &Motor::topicCallback_, this);
 

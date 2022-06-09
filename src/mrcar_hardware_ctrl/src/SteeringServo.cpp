@@ -12,7 +12,6 @@ SteeringServo::SteeringServo(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHand
 		ros::requestShutdown();
 	}
 
-	/* if different namespace needed
 	// Build correct namespace for topic
 	if(subscriberTopic_.empty())
 	{
@@ -24,7 +23,6 @@ SteeringServo::SteeringServo(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHand
 	}
 
 	subscriberTopic_ = "/mrcar_hardware_ctrl" + subscriberTopic_;
-	*/
 
 	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1, &SteeringServo::topicCallback_, this);
 
