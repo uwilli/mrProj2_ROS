@@ -1,10 +1,10 @@
-#include "mrcar_hardware_ctrl/Motor.hpp"
+#include "mrcar_hardware_ctrl/Clock.hpp"
 
-namespace motor
+namespace mrcar_hardware_ctrl
 {
 
 
-Motor::Motor(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle), m3_(3) // this is called an initializer list
+Clock::Clock(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle) // this is called an initializer list
 {
 	if (!readParameters_())
 	{
@@ -47,5 +47,5 @@ void Motor::topicCallback_(const geometry_msgs::Twist& msg)
 	m3_.speed(percent);
 }
 
-} /* namespace motor */
+} /* namespace mrcar_hardware_ctrl */
 
