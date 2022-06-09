@@ -34,8 +34,8 @@ Clock::Clock(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle) // this is c
 
 void Clock::publishTime()
 {
-	ros::Time& current_time = ros::Time::now();
-	publisher_.publish(current_time);
+	ros::Time current_time = ros::Time::now();
+	publisher_.publish(&current_time);
 }
 
 
