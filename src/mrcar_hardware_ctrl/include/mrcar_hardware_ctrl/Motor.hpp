@@ -34,7 +34,6 @@ private:
 
 	std_msgs::Time time_last_msg_;
 
-
 	// Functions
 	bool readParameters_();
 	void topicCallback_(const geometry_msgs::Twist& msg); //argument: const ... received message
