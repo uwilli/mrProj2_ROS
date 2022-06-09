@@ -5,18 +5,18 @@ namespace motor
 
 
 Motor::Motor(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle), m3_(3) // this is called an initializer list
-				{
+{
 	if (!readParameters_())
 	{
 		ROS_ERROR("Could not read parameters.");
 		ros::requestShutdown();
 	}
 
-	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1,
-			&Motor::topicCallback_, this);
+	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1, &Motor::topicCallback_, this);
 
 	ROS_INFO("Successfully launched motor node.");
-				}
+	ROS_DEBUG_STREAM("Subscriber topic Motor: " << subscriberTopic_);
+}
 
 
 bool Motor::readParameters_()

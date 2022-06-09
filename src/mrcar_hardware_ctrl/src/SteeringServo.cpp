@@ -5,18 +5,18 @@ namespace steering_servo
 
 
 SteeringServo::SteeringServo(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle), servo_(13, true) // this is called an initializer list
-				{
+{
 	if (!readParameters_())
 	{
 		ROS_ERROR("Could not read parameters.");
 		ros::requestShutdown();
 	}
 
-	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1,
-			&SteeringServo::topicCallback_, this);
+	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1, &SteeringServo::topicCallback_, this);
 
 	ROS_INFO("Successfully launched steering_servo node.");
-				}
+	ROS_DEBUG_STREAM("Subscriber topic Steeringservo: " << subscriberTopic_);
+}
 
 
 bool SteeringServo::readParameters_()
@@ -32,6 +32,8 @@ bool SteeringServo::readParameters_()
 		ROS_ERROR_STREAM("use_way parameter from parameter server has an invalid value.");
 		return false;
 	}
+
+	ROS_DEBUG("Read params");
 
 	return true;
 }
