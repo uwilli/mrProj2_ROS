@@ -12,10 +12,22 @@ SteeringServo::SteeringServo(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHand
 		ros::requestShutdown();
 	}
 
+	// Build correct namespace for topic
+	if(subscriberTopic_.empty())
+	{
+		ROS_ERROR("Empty subscriber topic in param server");
+		ros::requestShutdown();
+	}
+	if(subscriberTopic_.front() != "/"){
+		subscriberTopic_.insert(0, 1, '/');
+	}
+
+	subscriberTopic_.insert(0, 1, '/mrcar_hardware_ctrl');
+
 	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1, &SteeringServo::topicCallback_, this);
 
-	ROS_INFO("Successfully launched steering_servo node.");
 	ROS_DEBUG_STREAM("Subscriber topic Steeringservo: " << subscriberTopic_);
+	ROS_INFO("Successfully launched steering_servo node.");
 }
 
 
@@ -32,8 +44,6 @@ bool SteeringServo::readParameters_()
 		ROS_ERROR_STREAM("use_way parameter from parameter server has an invalid value.");
 		return false;
 	}
-
-	ROS_DEBUG("Read params");
 
 	return true;
 }
