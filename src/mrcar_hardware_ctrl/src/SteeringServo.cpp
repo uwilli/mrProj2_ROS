@@ -27,6 +27,12 @@ bool SteeringServo::readParameters_()
 	if (!nodeHandle_.getParam("steering_servo/servo_ms/neutral_ms", neutral_ms_)) return false;
 	if (!nodeHandle_.getParam("steering_servo/servo_ms/use_way", use_way_)) return false;
 
+	if ((use_way_ > 100) || (use_way_ < 0))
+	{
+		ROS_ERROR_STREAM("use_way parameter from parameter server has an invalid value.");
+		return false;
+	}
+
 	return true;
 }
 
