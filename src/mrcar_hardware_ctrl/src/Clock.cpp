@@ -25,7 +25,7 @@ Clock::Clock(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle) // this is c
 
 	//publisherTopic_ = "/mrcar_hardware_ctrl" + publisherTopic_;
 
-	publisher_ = nodeHandle_.advertise<std_msgs::Time>(publisherTopic_, 1); // message_queue = 1
+	publisher_ = nodeHandle_.advertise<std_msgs::String>(publisherTopic_, 1); // message_queue = 1
 
 	ROS_DEBUG_STREAM("Publisher topic Clock: " << publisherTopic_);
 	ROS_INFO("Successfully launched clock node.");
@@ -34,8 +34,9 @@ Clock::Clock(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle) // this is c
 
 void Clock::publishTime()
 {
-	ros::Time current_time = ros::Time::now();
-	publisher_.publish(&current_time);
+	std_msgs::String current_time;
+	current_time.data = "HelloWorld";
+	publisher_.publish(current_time);
 }
 
 

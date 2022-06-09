@@ -4,7 +4,7 @@
 
 // Ros
 #include <ros/ros.h>
-#include <std_msgs/Time.h>
+#include <std_msgs/String.h>
 
 // Std
 #include <string>
