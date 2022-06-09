@@ -18,11 +18,11 @@ Motor::Motor(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle), m3_(3) // t
 		ROS_ERROR("Empty subscriber topic in param server");
 		ros::requestShutdown();
 	}
-	if(subscriberTopic_.front() != "/"){
+	if(subscriberTopic_.front() != '/'){
 		subscriberTopic_.insert(0, 1, '/');
 	}
 
-	subscriberTopic_.insert(0, 1, '/mrcar_hardware_ctrl');
+	subscriberTopic_ = subscriberTopic_ + "/mrcar_hardware_ctrl";
 
 	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1, &Motor::topicCallback_, this);
 

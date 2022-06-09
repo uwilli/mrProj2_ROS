@@ -18,11 +18,11 @@ SteeringServo::SteeringServo(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHand
 		ROS_ERROR("Empty subscriber topic in param server");
 		ros::requestShutdown();
 	}
-	if(subscriberTopic_.front() != "/"){
+	if(subscriberTopic_.front() != '/'){
 		subscriberTopic_.insert(0, 1, '/');
 	}
 
-	subscriberTopic_.insert(0, 1, '/mrcar_hardware_ctrl');
+	subscriberTopic_ = subscriberTopic_ + "/mrcar_hardware_ctrl";
 
 	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1, &SteeringServo::topicCallback_, this);
 
