@@ -22,7 +22,7 @@ Motor::Motor(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle), m3_(3) // t
 		subscriberTopic_.insert(0, 1, '/');
 	}
 
-	subscriberTopic_ = "/mrcar_hardware_ctrl" + subscriberTopic_;
+	//subscriberTopic_ = "/mrcar_hardware_ctrl" + subscriberTopic_;
 
 	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1, &Motor::topicCallback_, this);
 
