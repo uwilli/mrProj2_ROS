@@ -47,7 +47,7 @@ void Motor::topicCallback_(const geometry_msgs::Twist& msg)
 
 void Motor::clock_topicCallback_(const std_msgs::Time& msg)
 {
-	if((msg.data - time_last_msg_.data) > max_time_no_msg_)
+	if((msg.data - time_last_msg_.data) > ros::Duration(max_time_no_msg_))
 	{
 		m3_.speed(0);
 	}
