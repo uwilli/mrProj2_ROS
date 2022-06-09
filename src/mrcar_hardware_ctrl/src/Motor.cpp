@@ -56,7 +56,7 @@ void Motor::clock_topicCallback_(const std_msgs::Time& msg)
 }
 
 
-void Motor::check_namespace_topic_(const std::string& subTopic)
+void Motor::check_namespace_topic_(std::string& subTopic)
 {
 	// Build correct namespace for topic
 	if(subTopic.empty())

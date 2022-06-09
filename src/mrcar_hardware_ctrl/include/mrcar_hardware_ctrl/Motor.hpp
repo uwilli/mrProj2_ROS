@@ -38,7 +38,7 @@ private:
 	bool readParameters_();
 	void topicCallback_(const geometry_msgs::Twist& msg); //argument: const ... received message
 	void clock_topicCallback_(const std_msgs::Time& msg);
-	void check_namespace_topic_(const std::string& subTopic);
+	void check_namespace_topic_(std::string& subTopic);
 };
 
 } /* namespace mrcar_hardware_ctrl */
