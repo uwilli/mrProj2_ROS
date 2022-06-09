@@ -12,19 +12,14 @@ Motor::Motor(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle), m3_(3) // t
 		ros::requestShutdown();
 	}
 
-	// Build correct namespace for topic
-	if(subscriberTopic_.empty())
-	{
-		ROS_ERROR("Empty subscriber topic in param server");
-		ros::requestShutdown();
-	}
-	if(subscriberTopic_.front() != '/'){
-		subscriberTopic_.insert(0, 1, '/');
-	}
-
-	//subscriberTopic_ = "/mrcar_hardware_ctrl" + subscriberTopic_;
+	check_namespace_topic_(subscriberTopic_);
+	check_namespace_topic_(clock_subscriberTopic_);
 
 	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1, &Motor::topicCallback_, this);
+	subscriber_ = nodeHandle_.subscribe(clock_subscriberTopic_, 1, &Motor::clock_topicCallback_, this);
+
+	// Calculate max delay (2 clock cycles)
+	time_last_msg_ = 2.0 / float(clock_Hz_);
 
 	ROS_DEBUG_STREAM("Subscriber topic Motor: " << subscriberTopic_);
 	ROS_INFO("Successfully launched motor node.");
@@ -34,6 +29,8 @@ Motor::Motor(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle), m3_(3) // t
 bool Motor::readParameters_()
 {
 	if (!nodeHandle_.getParam("motor/subscriber_topic", subscriberTopic_)) return false;
+	if (!nodeHandle_.getParam("clock/publisher_topic", clock_subscriberTopic_)) return false;
+	if (!nodeHandle_.getParam("clock/publisher_Hz", clock_Hz_)) return false;
 	return true;
 }
 
@@ -45,6 +42,33 @@ void Motor::topicCallback_(const geometry_msgs::Twist& msg)
 	ROS_DEBUG_STREAM("Motor speed written: " << percent);
 
 	m3_.speed(percent);
+}
+
+
+void Motor::clock_topicCallback_(const std_msgs::Time& msg)
+{
+	if(msg - time_last_msg_ > max_time_no_msg_)
+	{
+		m3_.speed(0);
+	}
+
+	time_last_msg_ = msg;
+}
+
+
+void Motor::check_namespace_topic_(const std::string& subTopic)
+{
+	// Build correct namespace for topic
+	if(subTopic.empty())
+	{
+		ROS_ERROR("Empty subscriber topic in param server");
+		ros::requestShutdown();
+	}
+	if(subTopic.front() != '/'){
+		subTopic = "/" + subTopic;
+	}
+
+	//subTopic = "/mrcar_hardware_ctrl" + subTopic;
 }
 
 } /* namespace mrcar_hardware_ctrl */

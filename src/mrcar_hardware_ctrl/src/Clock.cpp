@@ -40,9 +40,22 @@ void Clock::publishTime()
 }
 
 
+float Clock::getPeriod()
+{
+	return 1.0 / float(publisher_Hz_);
+}
+
+
+int Clock::getHz()
+{
+	return publisher_Hz_;
+}
+
+
 bool Clock::readParameters_()
 {
 	if (!nodeHandle_.getParam("clock/publisher_topic", publisherTopic_)) return false;
+	if (!nodeHandle_.getParam("clock/publisher_Hz", publisher_Hz_)) return false;
 	return true;
 }
 

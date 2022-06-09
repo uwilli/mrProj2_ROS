@@ -1,5 +1,6 @@
 clock:
     publisher_topic: clock
+    publisher_Hz: 10
 
 steering_servo:
     subscriber_topic: cmd_vel

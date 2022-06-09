@@ -9,7 +9,7 @@ int main(int argc, char** argv)
 
 	mrcar_hardware_ctrl::Clock clock(nodeHandle);
 
-	ros::Timer publishTime = nodeHandle.createTimer(ros::Duration(1.0 / 100.0), std::bind(&mrcar_hardware_ctrl::Clock::publishTime, clock));
+	ros::Timer publishTime = nodeHandle.createTimer(ros::Duration(clock.getPeriod()), std::bind(&mrcar_hardware_ctrl::Clock::publishTime, clock));
 
 	ros::spin();
 	return 0;
