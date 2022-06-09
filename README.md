@@ -20,6 +20,9 @@ Ros catkin ws for Mobile Robotics project 2 (FHGR).
 	alias ..="cd .."
 	alias sr="source devel/setup.bash"
 	alias ws="cd ~/catkin_ws"
+	alias re="cd ~/catkin_ws && git pull && catkin build mrcar_hardware_ctrl && source devel/setup.bash && roslaunch mrcar_hardware_ctrl mrcar_hardware_ctrl.launch"
+
+	# Functions
 	bd() { catkin build "$1" && source devel/setup.bash; }
 	source ~/catkin_ws/devel/setup.bash
 	
