@@ -4,7 +4,7 @@
 
 int main(int argc, char** argv)
 {
-	ros::init(argc, argv, "mrcar_hardware_ctrl");
+	ros::init(argc, argv, "steering_servo");
 	ros::NodeHandle nodeHandle("~");
 
 	steering_servo::SteeringServo steeringServo(nodeHandle);

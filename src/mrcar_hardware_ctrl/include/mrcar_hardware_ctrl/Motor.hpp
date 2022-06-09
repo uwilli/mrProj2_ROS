@@ -1,7 +1,7 @@
-#ifndef STEERING_SERVO_HPP
-#define STEERING_SERVO_HPP
+#ifndef MOTOR_HPP
+#define MOTOR_HPP
 
-#include "servo.h"
+#include "tb6612fng.h"
 
 // Ros
 #include <ros/ros.h>
@@ -11,30 +11,26 @@
 #include <string>
 
 
-namespace steering_servo
+namespace motor
 {
 
-class SteeringServo
+class Motor
 {
 public:
-	SteeringServo(ros::NodeHandle& nodeHandle);
+	Motor(ros::NodeHandle& nodeHandle);
 
 private:
 	ros::NodeHandle& nodeHandle_;
 	ros::Subscriber subscriber_;
 	std::string subscriberTopic_;
-	int min_ms_;
-	int max_ms_;
-	int neutral_ms_;
-	int use_way_; // restrict servo to maximum movement, [0,100]
 
-	Servo servo_;
+	Tb6612fng m3_;
 
 	// Functions
 	bool readParameters_();
 	void topicCallback_(const geometry_msgs::Twist& msg); //argument: const ... received message
 };
 
-} /* namespace steering_servo */
+} /* namespace motor */
 
-#endif // STEERING_SERVO_HPP
+#endif // MOTOR_HPP
