@@ -23,7 +23,7 @@ bool SteeringServo::readParameters_()
 {
 	if (!nodeHandle_.getParam("steering_servo/subscriber_topic", subscriberTopic_)) return false;
 	if (!nodeHandle_.getParam("steering_servo/servo_ms/min_ms", min_ms_)) return false;
-	if (!nodeHandle_.getParam("steering_servo/servo_ms/min_ms", max_ms_)) return false;
+	if (!nodeHandle_.getParam("steering_servo/servo_ms/max_ms", max_ms_)) return false;
 
 	return true;
 }
