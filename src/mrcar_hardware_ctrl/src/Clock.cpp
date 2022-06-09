@@ -13,39 +13,37 @@ Clock::Clock(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle) // this is c
 	}
 
 	// Build correct namespace for topic
-	if(subscriberTopic_.empty())
+	if(publisherTopic_.empty())
 	{
-		ROS_ERROR("Empty subscriber topic in param server");
+		ROS_ERROR("Empty publisher topic for clock in param server");
 		ros::requestShutdown();
 	}
-	if(subscriberTopic_.front() != '/'){
-		subscriberTopic_.insert(0, 1, '/');
+	if(publisherTopic_.front() != '/')
+	{
+		publisherTopic_.insert(0, 1, '/');
 	}
 
-	subscriberTopic_ = "/mrcar_hardware_ctrl" + subscriberTopic_;
+	//publisherTopic_ = "/mrcar_hardware_ctrl" + publisherTopic_;
 
-	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1, &Motor::topicCallback_, this);
+	publisher_ = nodeHandle_.advertise<std_msgs::Time>(publisherTopic_, 1); // message_queue = 1
 
-	ROS_DEBUG_STREAM("Subscriber topic Motor: " << subscriberTopic_);
-	ROS_INFO("Successfully launched motor node.");
+	ROS_DEBUG_STREAM("Publisher topic Clock: " << publisherTopic_);
+	ROS_INFO("Successfully launched clock node.");
 }
 
 
-bool Motor::readParameters_()
+void Clock::publishTime()
 {
-	if (!nodeHandle_.getParam("motor/subscriber_topic", subscriberTopic_)) return false;
+	publisher_.publish(ros::Time::now());
+}
+
+
+bool Clock::readParameters_()
+{
+	if (!nodeHandle_.getParam("clock/publisher_topic", publisherTopic_)) return false;
 	return true;
 }
 
-
-void Motor::topicCallback_(const geometry_msgs::Twist& msg)
-{
-	int percent = msg.linear.x * 100;
-
-	ROS_DEBUG_STREAM("Motor speed written: " << percent);
-
-	m3_.speed(percent);
-}
 
 } /* namespace mrcar_hardware_ctrl */
 

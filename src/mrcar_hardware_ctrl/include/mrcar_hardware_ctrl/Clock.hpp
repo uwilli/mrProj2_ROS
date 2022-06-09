@@ -4,7 +4,7 @@
 
 // Ros
 #include <ros/ros.h>
-#include <geometry_msgs/Twist.h>
+#include <std_msgs/Time.h>
 
 // Std
 #include <string>
@@ -17,16 +17,14 @@ class Clock
 {
 public:
 	Clock(ros::NodeHandle& nodeHandle);
+	void publishTime();
 
 private:
 	ros::NodeHandle& nodeHandle_;
-	ros::Subscriber subscriber_;
-	std::string subscriberTopic_;
+	ros::Publisher publisher_;
+	std::string publisherTopic_;
 
-
-	// Functions
 	bool readParameters_();
-	void topicCallback_(const geometry_msgs::Twist& msg); //argument: const ... received message
 };
 
 } /* namespace mrcar_hardware_ctrl */

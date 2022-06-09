@@ -4,10 +4,12 @@
 
 int main(int argc, char** argv)
 {
-	ros::init(argc, argv, "motor");
+	ros::init(argc, argv, "clock");
 	ros::NodeHandle nodeHandle("~");
 
 	mrcar_hardware_ctrl::Clock clock(nodeHandle);
+
+	ros::Timer publishTime = nodeHandle.createTimer(ros::Duration(1.0 / 100.0), std::bind(&mrcar_hardware_ctrl::Clock::publishTime, clock));
 
 	ros::spin();
 	return 0;
