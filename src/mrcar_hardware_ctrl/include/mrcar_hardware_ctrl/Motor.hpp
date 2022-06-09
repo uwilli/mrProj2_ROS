@@ -28,7 +28,7 @@ private:
 	ros::Subscriber clock_subscriber_;
 	std::string clock_subscriberTopic_;
 	int clock_Hz_;
-	int max_time_no_msg_;
+	ros::Duration max_duration_no_msg_;
 
 	Tb6612fng m3_;
 

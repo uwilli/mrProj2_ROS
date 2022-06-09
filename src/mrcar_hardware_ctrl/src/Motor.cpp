@@ -19,7 +19,7 @@ Motor::Motor(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle), m3_(3) // t
 	subscriber_ = nodeHandle_.subscribe(clock_subscriberTopic_, 1, &Motor::clock_topicCallback_, this);
 
 	// Calculate max delay (2 clock cycles)
-	time_last_msg_ = int(2.0 / float(clock_Hz_));
+	max_duration_no_msg_ = ros::Duration(2.0 / float(clock_Hz_));
 
 	ROS_DEBUG_STREAM("Subscriber topic Motor: " << subscriberTopic_);
 	ROS_INFO("Successfully launched motor node.");
@@ -47,7 +47,7 @@ void Motor::topicCallback_(const geometry_msgs::Twist& msg)
 
 void Motor::clock_topicCallback_(const std_msgs::Time& msg)
 {
-	if((msg.data - time_last_msg_.data) > ros::Duration(max_time_no_msg_))
+	if((msg.data - time_last_msg_.data) > max_duration_no_msg_)
 	{
 		m3_.speed(0);
 	}
