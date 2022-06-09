@@ -5,7 +5,7 @@ namespace steering_servo
 
 
 SteeringServo::SteeringServo(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle), servo_(13, true) // this is called an initializer list
-		{
+				{
 	if (!readParameters_())
 	{
 		ROS_ERROR("Could not read parameters.");
@@ -16,7 +16,7 @@ SteeringServo::SteeringServo(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHand
 			&SteeringServo::topicCallback_, this);
 
 	ROS_INFO("Successfully launched steering_servo node.");
-		}
+				}
 
 
 bool SteeringServo::readParameters_()
@@ -35,15 +35,20 @@ void SteeringServo::topicCallback_(const geometry_msgs::Twist& msg)
 {
 	int percent = msg.angular.z * 100;
 	int ms;
+	unsigned int max_ticks;
 
 	if(percent >= 0)
 	{
-		ms = percent * (((max_ms_ - neutral_ms_)*use_way_)/100) + neutral_ms_;
+		max_ticks = max_ms_ - neutral_ms_;
+		max_ticks = (max_ticks*use_way_)/100;
+		ms = (percent * max_ticks)/100 + neutral_ms_;
 	}
 
 	if(percent < 0)
 	{
-		ms = percent * (((neutral_ms_ - min_ms_)*use_way_)/100) + neutral_ms_;
+		max_ticks = neutral_ms_ - min_ms_;
+		max_ticks = (max_ticks*use_way_)/100;
+		ms = (percent * max_ticks)/100 + neutral_ms_;
 	}
 
 	ROS_DEBUG_STREAM("ms written to servo: " << ms);
