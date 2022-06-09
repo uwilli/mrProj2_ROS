@@ -1,0 +1,11 @@
+<launch>
+	<env name="ROSCONSOLE_CONFIG_FILE" value="$(find mrcar_hardware_ctrl)/config/console_output.conf"/>
+
+	<node name="steering_servo" pkg="mrcar_hardware_ctrl" type="steering_servo" output="screen">
+		<rosparam command="load" file="$(find mrcar_hardware_ctrl)/config/config.yaml" />
+	</node>
+	
+	<node name="motor" pkg="mrcar_hardware_ctrl" type="motor" output="screen">
+		<rosparam command="load" file="$(find mrcar_hardware_ctrl)/config/config.yaml" />
+	</node>
+</launch>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<package format="2">
+  <name>mrcar_hardware_ctrl</name>
+  <version>0.0.0</version>
+  <description>Package handling hardware control of mrProj1 PCB (FHGR).</description>
+  <maintainer email="urban.willi@stud.fhgr.ch">Urban Willi</maintainer>
+  <license>BSD</license>
+  <author email="urban.willi@stud.fhgr.ch">Urban Willi</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  
+  <build_depend>roscpp</build_depend>
+  <build_depend>geometry_msgs</build_depend>
+  
+  <build_export_depend>roscpp</build_export_depend>
+  <build_export_depend>geometry_msgs</build_export_depend>
+  
+  <exec_depend>roscpp</exec_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+
+</package>
