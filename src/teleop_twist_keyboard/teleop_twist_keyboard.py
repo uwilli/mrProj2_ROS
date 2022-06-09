@@ -168,8 +168,8 @@ if __name__=="__main__":
 
     speed = rospy.get_param("~speed", 0.5)
     turn = rospy.get_param("~turn", 1.0)
-    repeat = rospy.get_param("~repeat_rate", 0.0)
-    key_timeout = rospy.get_param("~key_timeout", 0.0)
+    repeat = rospy.get_param("/repeat_rate", 0.0)
+    key_timeout = rospy.get_param("/key_timeout", 0.0)
     if key_timeout == 0.0:
         key_timeout = None
 

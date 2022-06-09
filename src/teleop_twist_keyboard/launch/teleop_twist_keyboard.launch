@@ -1,6 +1,7 @@
 <?xml version="1.0"?>
 <launch>
-	<node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen">
-		<rosparam command="load" file="$(find teleop_twist_keyboard)/config/config.yaml" />
-	</node>
+	<param name="repeat_rate" type="double" value="10" />
+	<param name="key_timeout" type="double" value="0.6" />
+	
+	<node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
 </launch>
