@@ -22,7 +22,7 @@ SteeringServo::SteeringServo(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHand
 		subscriberTopic_.insert(0, 1, '/');
 	}
 
-	subscriberTopic_ = subscriberTopic_ + "/mrcar_hardware_ctrl";
+	subscriberTopic_ = "/mrcar_hardware_ctrl" + subscriberTopic_;
 
 	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1, &SteeringServo::topicCallback_, this);
 
