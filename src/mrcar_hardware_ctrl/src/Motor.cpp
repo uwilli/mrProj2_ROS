@@ -16,7 +16,7 @@ Motor::Motor(ros::NodeHandle& nodeHandle) : nodeHandle_(nodeHandle), m3_(3) // t
 	check_namespace_topic_(clock_subscriberTopic_);
 
 	subscriber_ = nodeHandle_.subscribe(subscriberTopic_, 1, &Motor::topicCallback_, this);
-	subscriber_ = nodeHandle_.subscribe(clock_subscriberTopic_, 1, &Motor::clock_topicCallback_, this);
+	clock_subscriber_ = nodeHandle_.subscribe(clock_subscriberTopic_, 1, &Motor::clock_topicCallback_, this);
 
 	// Calculate max delay (2 clock cycles)
 	max_duration_no_msg_ = ros::Duration(2.0 / float(clock_Hz_));
