@@ -1,8 +1,10 @@
 steering_servo:
     subscriber_topic: cmd_vel
     servo_ms:
+        neutral_ms: 1460
         min_ms: 900
-        max_ms: 1700
+        max_ms: 1790
+        use_way: 80 # limit max and min steering angle, in percent [0, 100]
 
 motor:
     subscriber_topic: cmd_vel

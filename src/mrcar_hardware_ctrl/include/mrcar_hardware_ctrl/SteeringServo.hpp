@@ -25,6 +25,8 @@ private:
 	std::string subscriberTopic_;
 	int min_ms_;
 	int max_ms_;
+	int neutral_ms_;
+	int use_way_; // restrict servo to maximum movement, [0,100]
 
 	Servo servo_;
 
