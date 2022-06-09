@@ -11,7 +11,7 @@
 #include <string>
 
 
-namespace motor
+namespace mrcar_hardware_ctrl
 {
 
 class Motor
@@ -31,6 +31,6 @@ private:
 	void topicCallback_(const geometry_msgs::Twist& msg); //argument: const ... received message
 };
 
-} /* namespace motor */
+} /* namespace mrcar_hardware_ctrl */
 
 #endif // MOTOR_HPP

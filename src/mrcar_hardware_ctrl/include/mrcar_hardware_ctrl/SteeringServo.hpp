@@ -11,7 +11,7 @@
 #include <string>
 
 
-namespace steering_servo
+namespace mrcar_hardware_ctrl
 {
 
 class SteeringServo
@@ -35,6 +35,6 @@ private:
 	void topicCallback_(const geometry_msgs::Twist& msg); //argument: const ... received message
 };
 
-} /* namespace steering_servo */
+} /* namespace mrcar_hardware_ctrl */
 
 #endif // STEERING_SERVO_HPP
