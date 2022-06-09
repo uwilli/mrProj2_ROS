@@ -38,12 +38,12 @@ void SteeringServo::topicCallback_(const geometry_msgs::Twist& msg)
 
 	if(percent >= 0)
 	{
-		ms = percent * ((max_ms_ - neutral_ms_)*use_way_)/100 + neutral_ms_;
+		ms = percent * (((max_ms_ - neutral_ms_)*use_way_)/100) + neutral_ms_;
 	}
 
 	if(percent < 0)
 	{
-		ms = percent * ((neutral_ms_ - min_ms_)*use_way_)/100 + neutral_ms_;
+		ms = percent * (((neutral_ms_ - min_ms_)*use_way_)/100) + neutral_ms_;
 	}
 
 	ROS_DEBUG_STREAM("ms written to servo: " << ms);
