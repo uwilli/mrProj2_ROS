@@ -9,8 +9,8 @@ set(CMAKE_CXX_STANDARD_REQUIRED TRUE)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
   roscpp
+  std_msgs
   geometry_msgs
-  rosgraph_msgs
 )
 
 ################################################################
@@ -50,6 +50,7 @@ catkin_package(
 #  LIBRARIES steering_servo
 	CATKIN_DEPENDS
 		roscpp
+		std_msgs
 		geometry_msgs
 #  DEPENDS system_lib
 )

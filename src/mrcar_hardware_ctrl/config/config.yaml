@@ -1,3 +1,6 @@
+clock:
+    publisher_topic: clock
+
 steering_servo:
     subscriber_topic: cmd_vel
     servo_ms:
