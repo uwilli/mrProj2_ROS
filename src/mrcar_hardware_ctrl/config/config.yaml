@@ -4,7 +4,7 @@ steering_servo:
         neutral_ms: 1460
         min_ms: 900
         max_ms: 1790
-        use_way: 70 # limit max and min steering angle, in percent [0, 100]
+        use_way: 65 # limit max and min steering angle, in percent [0, 100]
 
 motor:
     subscriber_topic: cmd_vel
