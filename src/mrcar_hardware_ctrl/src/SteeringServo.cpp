@@ -37,18 +37,18 @@ void SteeringServo::topicCallback_(const geometry_msgs::Twist& msg)
 	int ms;
 	unsigned int max_ticks;
 
-	if(percent >= 0)
+	if(percent <= 0)
 	{
 		max_ticks = max_ms_ - neutral_ms_;
 		max_ticks = (max_ticks*use_way_)/100;
-		ms = (percent * max_ticks)/100 + neutral_ms_;
+		ms = (abs(percent) * max_ticks)/100 + neutral_ms_;
 	}
 
-	if(percent < 0)
+	if(percent > 0)
 	{
 		max_ticks = neutral_ms_ - min_ms_;
 		max_ticks = (max_ticks*use_way_)/100;
-		ms = (percent * max_ticks)/100 + neutral_ms_;
+		ms = neutral_ms_ - (abs(percent) * max_ticks)/100;
 	}
 
 	ROS_DEBUG_STREAM("ms written to servo: " << ms);
