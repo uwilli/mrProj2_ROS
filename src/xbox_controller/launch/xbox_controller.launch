@@ -1,0 +1,3 @@
+<launch>
+	<node name="xbox_controller" pkg="xbox_controller" type="xbox_controller_node.py" output="screen"/>
+</launch>
