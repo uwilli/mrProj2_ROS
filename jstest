@@ -1,0 +1,2 @@
+options bluetooth disable_ertm=Y
+options bluetooth disable_ertm=Y
