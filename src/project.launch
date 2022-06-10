@@ -2,4 +2,6 @@
 <launch>
 	<include file="$(find teleop_twist_keyboard)/launch/teleop_twist_keyboard.launch" />
 	<include file="$(find mrcar_hardware_ctrl)/launch/mrcar_hardware_ctrl.launch" />
+	<include file="$(find rplidar_ros)/launch/rplidar.launch" />
+	<include file="$(find hector_slam_launch)/launch/mobiles_robotikprojekt_2.launch" /> 
 </launch>

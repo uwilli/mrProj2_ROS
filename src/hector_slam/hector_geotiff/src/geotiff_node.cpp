@@ -26,28 +26,24 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 //=================================================================================================
 
+#include "hector_geotiff/geotiff_writer.h"
+#include "hector_geotiff/map_writer_plugin_interface.h"
+
 #include <cstdio>
 #include <ros/ros.h>
 #include <ros/console.h>
+
 #include <pluginlib/class_loader.h>
 
+#include <memory>
 #include <boost/algorithm/string.hpp>
 
-
-#include "nav_msgs/GetMap.h"
-#include "std_msgs/String.h"
-#include "geometry_msgs/Quaternion.h"
-
-#include <Eigen/Geometry>
-
-#include <QtGui/QApplication>
-
-#include <hector_map_tools/HectorMapTools.h>
-
-#include <hector_geotiff/geotiff_writer.h>
-#include <hector_geotiff/map_writer_plugin_interface.h>
-
+#include <geometry_msgs/Quaternion.h>
+#include <nav_msgs/GetMap.h>
+#include <std_msgs/String.h>
 #include <hector_nav_msgs/GetRobotTrajectory.h>
+
+#include <QApplication>
 
 using namespace std;
 
@@ -61,8 +57,7 @@ class MapGenerator
 public:
   MapGenerator()
     : geotiff_writer_(false)
-    , pn_("~")    
-    , plugin_loader_(0)
+    , pn_("~")
     , running_saved_map_num_(0)
   {
     pn_.param("map_file_path", p_map_file_path_, std::string("."));
@@ -98,7 +93,7 @@ public:
 
     //We always have at least one element containing "" in the string list
     if ((plugin_list.size() > 0) && (plugin_list[0].length() > 0)){
-      plugin_loader_ = new pluginlib::ClassLoader<hector_geotiff::MapWriterPluginInterface>("hector_geotiff", "hector_geotiff::MapWriterPluginInterface");
+      plugin_loader_ = std::make_unique<pluginlib::ClassLoader<hector_geotiff::MapWriterPluginInterface>>("hector_geotiff", "hector_geotiff::MapWriterPluginInterface");
 
       for (size_t i = 0; i < plugin_list.size(); ++i){
         try
@@ -119,12 +114,7 @@ public:
     ROS_INFO("Geotiff node started");
   }
 
-  ~MapGenerator()
-  {
-    if (plugin_loader_){
-      delete plugin_loader_;
-    }
-  }
+  ~MapGenerator() = default;
 
   void writeGeotiff()
   {
@@ -274,7 +264,8 @@ public:
 
   //double p_geotiff_save_period_;
 
-  GeotiffWriter geotiff_writer_;
+  ros::NodeHandle n_;
+  ros::NodeHandle pn_;
 
   ros::ServiceClient map_service_client_;// = n.serviceClient<beginner_tutorials::AddTwoInts>("add_two_ints");
   ros::ServiceClient object_service_client_;
@@ -282,12 +273,11 @@ public:
 
   ros::Subscriber sys_cmd_sub_;
 
-  ros::NodeHandle n_;
-  ros::NodeHandle pn_;
-
+  std::unique_ptr<pluginlib::ClassLoader<hector_geotiff::MapWriterPluginInterface>> plugin_loader_;
   std::vector<boost::shared_ptr<hector_geotiff::MapWriterPluginInterface> > plugin_vector_;
 
-  pluginlib::ClassLoader<hector_geotiff::MapWriterPluginInterface>* plugin_loader_;
+
+  GeotiffWriter geotiff_writer_;
 
   ros::Timer map_save_timer_;
 
