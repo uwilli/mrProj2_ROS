@@ -2,6 +2,37 @@
 Changelog for package hector_geotiff
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+0.5.2 (2021-04-08)
+------------------
+* Refactored hector_geotiff dependencies.
+* Contributors: Stefan Fabian
+
+0.5.1 (2021-01-15)
+------------------
+* Fixed "SEVERE WARNING" by pluginloader when killing geotiff node.
+  Some minor cleanup.
+* Contributors: Stefan Fabian
+
+0.5.0 (2020-12-17)
+------------------
+* Added missing dependency for Qt5 cmake.
+* Moved hector_geotiff launch files to separate package to solve cyclic dependency.
+  Clean up for noetic release.
+* Qt5 support for hector geotiff on headless systems.
+* Updated platform args. Test on robot.
+* Experiments with platform argument.
+* Renamed depends for (hopefully soon) rosdep compatibility.
+* Moved to Qt5.
+* Contributors: Stefan Fabian
+
+0.4.1 (2020-05-15)
+------------------
+
+0.3.6 (2019-10-31)
+------------------
+* Update geotiff draw interface to support different shapes
+* Contributors: Stefan Kohlbrecher
+
 0.3.5 (2016-06-24)
 ------------------
 * Use the FindEigen3.cmake module provided by Eigen
