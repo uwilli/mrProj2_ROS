@@ -30,7 +30,7 @@ def publisherController():
         #print(value)
         
         if type == 2: # Joystick
-        	if number == 4:
+        	if number == 4:
         		value = value + 32767
         		speed = value / 65534
         	elif number == 2: # links/rechts
