@@ -40,7 +40,7 @@ def publisherController():
         	if number == 0: # A
         		if value == 1:
         			reverse=1
-        		else
+        		else :
         			reverse=0
 
         inputcontroller_msg = Twist()
