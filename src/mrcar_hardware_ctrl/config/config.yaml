@@ -5,9 +5,9 @@ clock:
 steering_servo:
     subscriber_topic: cmd_vel
     servo_ms:
-        neutral_ms: 1460
-        min_ms: 1200
-        max_ms: 1700
+        neutral_ms: 1500
+        min_ms: 1200 # links
+        max_ms: 1750 # rechts
         use_way: 100 # limit max and min steering angle, in percent [0, 100]
 
 motor:
