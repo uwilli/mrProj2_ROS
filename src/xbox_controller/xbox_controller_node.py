@@ -26,10 +26,10 @@ def publisherController():
     steering=0
     
     while not rospy.is_shutdown():
-        (tv_msec, value, type, number) = struct.unpack("LhBB", event)
+        (tv_msec, value, cont_type, number) = struct.unpack("LhBB", event)
         #print(value)
         
-        if type == 2: # Joystick
+        if cont_type == 2: # Joystick
         	if number == 4:
         		value = value + 32767
         		speed = value / 65534
