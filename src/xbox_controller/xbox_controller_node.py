@@ -13,7 +13,7 @@ import pigpio
 import struct
 
 def publisherController():
-    controllerpub = rospy.Publisher('controller', Twist, queue_size=1)
+    controllerpub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
     rospy.init_node('xbox_controller_node', anonymous=True)
     rate = rospy.Rate(30) # 30hz
 
@@ -33,12 +33,12 @@ def publisherController():
         	if number == 4:
         		value = value + 32767
         		speed = value / 65534
-        	elif number == 2: # links/rechts
+        	elif number == 0: # links/rechts
         		steering=value/32767
 
         inputcontroller_msg = Twist()
-        inputcontroller_msg.linear.x = steering # speed
-        inputcontroller_msg.angular.z = speed # direction
+        inputcontroller_msg.linear.x = speed # speed
+        inputcontroller_msg.angular.z = steering # direction
 
 
         rospy.loginfo(inputcontroller_msg)
