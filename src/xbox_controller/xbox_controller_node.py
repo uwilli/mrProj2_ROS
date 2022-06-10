@@ -22,9 +22,9 @@ def publisherController():
     file = open(xbox_file_path, "rb")
     event = file.read(INPUTSIZE)
     
-    speed = 0
-    steering = 0
-
+    speed=0
+    steering=0
+    
     while not rospy.is_shutdown():
         (tv_msec, value, type, number) = struct.unpack("LhBB", event)
         #print(value)
