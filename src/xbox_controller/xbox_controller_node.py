@@ -15,7 +15,7 @@ import struct
 def publisherController():
     controllerpub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
     rospy.init_node('xbox_controller_node', anonymous=True)
-    rate = rospy.Rate(30) # 30hz
+    rate = rospy.Rate(10) # Hz
 
     xbox_file_path = "/dev/input/js0"
     INPUTSIZE = struct.calcsize("LhBB")
