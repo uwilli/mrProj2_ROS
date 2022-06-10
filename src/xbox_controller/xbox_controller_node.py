@@ -24,7 +24,7 @@ def publisherController():
     
     speed=0
     steering=0
-    reverse=0
+    reverse=1
     
     while not rospy.is_shutdown():
         (tv_msec, value, cont_type, number) = struct.unpack("LhBB", event)
@@ -39,9 +39,9 @@ def publisherController():
         if cont_type == 1: # Button
         	if number == 0: # A
         		if value == 1:
-        			reverse=1
+        			reverse=-1
         		else :
-        			reverse=0
+        			reverse=1
 
         inputcontroller_msg = Twist()
         inputcontroller_msg.linear.x = reverse*speed # speed
