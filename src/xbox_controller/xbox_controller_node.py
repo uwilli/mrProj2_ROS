@@ -34,7 +34,7 @@ def publisherController():
         		value = value + 32767
         		speed = value / 65534
         	elif number == 2: # links/rechts
-        		steering = value / 32767
+        		steering=value/32767
 
         inputcontroller_msg = Twist()
         inputcontroller_msg.linear.x = steering # speed
