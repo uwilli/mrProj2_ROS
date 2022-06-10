@@ -3,5 +3,6 @@
 	<param name="repeat_rate" type="double" value="10" />
 	<param name="key_timeout" type="double" value="0.6" />
 	
-	<node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="teleop_twist_keyboard.py" output="screen"/>
+	<node name="teleop_twist_keyboard" pkg="teleop_twist_keyboard" type="better_teleop.py" output="screen"/>
 </launch>
+
