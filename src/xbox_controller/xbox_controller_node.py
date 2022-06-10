@@ -29,14 +29,12 @@ def publisherController():
         (tv_msec, value, type, number) = struct.unpack("LhBB", event)
         #print(value)
         
-        match int(type):
-        	case 2: # Joystick
-        		match int(number):
-        			case 4:
-        				value = value + 32767
-        				speed = value / 65534
-        			case 0: # links/rechts
-        				steering = value / 32767
+        if type == 2: # Joystick
+        	if number == 4:
+        		value = value + 32767
+        		speed = value / 65534
+        	elif number == 2: # links/rechts
+        		steering = value / 32767
 
         inputcontroller_msg = Twist()
         inputcontroller_msg.linear.x = steering # speed
