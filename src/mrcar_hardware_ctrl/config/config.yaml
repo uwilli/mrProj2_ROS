@@ -12,3 +12,7 @@ steering_servo:
 
 motor:
     subscriber_topic: cmd_vel
+
+xbox:
+    publisher_topic: cmd_vel
+    publisher_Hz: 10
