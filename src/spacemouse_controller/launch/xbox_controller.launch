@@ -1,0 +1,3 @@
+<launch>
+	<node name="spacemouse_controller" pkg="spacemouse_controller" type="spacemouse_controller_node.py" output="screen"/>
+</launch>

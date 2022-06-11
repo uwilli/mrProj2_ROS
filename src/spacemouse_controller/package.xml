@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<package>
+  <name>spacemouse_controller</name>
+  <version>1.0.0</version>
+  <description>3d connexion Spacemouse Pro Wireless controller</description>
+
+  <maintainer email="urban.willi@stud.fhgr.ch">Urban Willi</maintainer>
+
+  <license>MIT</license>
+
+  <author>Urban Willi</author>
+
+  <buildtool_depend>catkin</buildtool_depend>
+  <run_depend>rospy</run_depend>
+  <run_depend>geometry_msgs</run_depend>
+</package>
