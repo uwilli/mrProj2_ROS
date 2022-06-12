@@ -39,12 +39,12 @@ bool Motor::readParameters_()
 
 void Motor::topicCallback_(const geometry_msgs::Twist& msg)
 {
-	time_last_msg_.data = ros::Time::now();
 	int percent = msg.linear.x * 100;
 
 	ROS_DEBUG_STREAM("Motor speed written: " << percent);
 
 	m3_.speed(percent);
+	time_last_msg_.data = ros::Time::now();
 }
 
 
