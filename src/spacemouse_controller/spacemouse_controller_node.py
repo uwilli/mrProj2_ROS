@@ -236,6 +236,7 @@ def publisherController():
 
     controller = Spacemouse()
 
+    constSpeed = False
     active = 0
     while not rospy.is_shutdown():
         active = 0
@@ -249,10 +250,13 @@ def publisherController():
             if er.errno == 110:  # Timeout
                 pass
 
-        if (controller.pitch):
+        if controller.lockRotation:
+            constSpeed != constSpeed
+            inputcontroller_msg.linear.x = controller.pitch / 350 # speed
+        if (controller.pitch and !constSpeed):
             active = 1
             inputcontroller_msg.linear.x = controller.pitch / 350  # speed
-        if (controller.yaw):
+        if controller.yaw:
             active = 1
             inputcontroller_msg.angular.z = controller.yaw / 350  # direction
 

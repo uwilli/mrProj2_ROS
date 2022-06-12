@@ -39,6 +39,7 @@ bool Motor::readParameters_()
 
 void Motor::topicCallback_(const geometry_msgs::Twist& msg)
 {
+	time_last_msg_.data = ros::Time::now();
 	int percent = msg.linear.x * 100;
 
 	ROS_DEBUG_STREAM("Motor speed written: " << percent);
@@ -52,10 +53,9 @@ void Motor::clock_topicCallback_(const std_msgs::Time& msg)
 	if((msg.data - time_last_msg_.data) > max_duration_no_msg_)
 	{
 		m3_.speed(0);
+		time_last_msg_ = msg;
 		ROS_DEBUG("Stopped motor");
 	}
-
-	time_last_msg_ = msg;
 }
 
 
