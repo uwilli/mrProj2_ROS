@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
- 
+
 """
 Publishes Twist messages to /cmd_vel, taking joystick input from spacemouse, a 3d-Cad mouse.
 
@@ -72,13 +72,14 @@ class Spacemouse:
                 sys.exit("Could not detach kernel driver from interface 0")
 
     def __del__(self):
-        usb.util.dispose_resources(self.dev) # free usb device
+        usb.util.dispose_resources(self.dev)  # free usb device
 
     # Spacemouse talks via receiver over Usb, using interrupt msgs.
     # Timeout for waiting on interrupt, in s. (Milliseconds recommended).
     # Single button presses and following release recognized. Simultaneous several buttons not yet supported.
     def getInterruptMsg(self):
-        usbInt = self.dev.read(0x81, 0x20, 10)  # endpoint address, msg length -> wMaxPacketSize, timeout (optional, device default if not set)
+        usbInt = self.dev.read(0x81, 0x20,
+                               10)  # endpoint address, msg length -> wMaxPacketSize, timeout (optional, device default if not set)
 
         msgType = usbInt[0]
 
@@ -88,7 +89,7 @@ class Spacemouse:
                 released = False
                 break
 
-        if msgType == 1: # Joystick
+        if msgType == 1:  # Joystick
             if released:
                 self.x = None
                 self.y = None
@@ -146,16 +147,16 @@ class Spacemouse:
                 print('Roll View')
             elif val == 16:
                 self.b1 = True
-                #print('B1')
+                # print('B1')
             elif val == 32:
                 self.b2 = True
-                #print('B2')
+                # print('B2')
             elif val == 64:
                 self.b3 = True
-                #print('B3')
+                # print('B3')
             elif val == 128:
                 self.b4 = True
-                #print('B4')
+                # print('B4')
 
             # Position 3
             val = self.__tryIndexAbsVal(usbInt, 3)
@@ -163,7 +164,7 @@ class Spacemouse:
                 return
 
             if val == 64:
-                #print('Escape')
+                # print('Escape')
                 self.escape = True
             elif val == 128:
                 print('Alt')
@@ -179,7 +180,7 @@ class Spacemouse:
                 print('Ctrl')
             elif val == 4:
                 self.lockRotation = True
-                #print('Lock Rotation')
+                # print('Lock Rotation')
 
         elif msgType == 23:
             # print('inactivity?')
@@ -191,7 +192,6 @@ class Spacemouse:
         # for i, item in enumerate(usbInt):
         #     print(item)
 
-
     # returns None if index out of range
     def __tryIndexTwosComp(self, list, index):
         ret = None
@@ -200,12 +200,11 @@ class Spacemouse:
         except ValueError:
             return ret
 
-        if absVal > 127: # two's complement
+        if absVal > 127:  # two's complement
             ret = ~absVal & 1
         else:
             ret = absVal
         return ret
-
 
     # returns -1 if index out of range
     def __tryIndexAbsVal(self, list, index):
@@ -222,8 +221,8 @@ class Spacemouse:
         if x >= 32768:
             x = -(65536 - x)
         return x
-        
-        
+
+
 ######################################################################################################
 # Functions
 ######################################################################################################
@@ -232,37 +231,37 @@ class Spacemouse:
 def publisherController():
     controllerpub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
     rospy.init_node('spacemouse_controller_node', anonymous=True)
-    rate = rospy.Rate(10) # Hz
-    
+    rate = rospy.Rate(10)  # Hz
+
     inputcontroller_msg = Twist()
 
     controller = Spacemouse()
-    
+
     active = 0
     while not rospy.is_shutdown():
-    	inputcontroller_msg.linear.x = 0
-    	inputcontroller_msg.angular.z = 0
+        inputcontroller_msg.linear.x = 0
+        inputcontroller_msg.angular.z = 0
 
         try:
             controller.getInterruptMsg()
-            
+
         except usb.core.USBError as er:
-            if er.errno == 110: # Timeout
+            if er.errno == 110:  # Timeout
                 pass
-        
-        if(controller.pitch):
-            active = 1
-            inputcontroller_msg.linear.x = controller.pitch/350 # speed
-        if(controller.roll):
-            active = 1
-            inputcontroller_msg.angular.z = controller.roll/350 # direction
 
+        if (controller.pitch):
+            active = 1
+            inputcontroller_msg.linear.x = controller.pitch / 350  # speed
+        if (controller.roll):
+            active = 1
+            inputcontroller_msg.angular.z = controller.roll / 350  # direction
 
-        #rospy.loginfo(inputcontroller_msg) # prints on rosinfo
+        # rospy.loginfo(inputcontroller_msg) # prints on rosinfo
         if active:
             controllerpub.publish(inputcontroller_msg)
 
         rate.sleep()
+
 
 
 ######################################################################################################
