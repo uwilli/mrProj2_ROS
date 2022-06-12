@@ -254,6 +254,7 @@ def publisherController():
         if controller.lockRotation:
             if debouncing > 5:
                 constSpeed != constSpeed
+                rospy.logdebug("Toggled speed control, now is set to: ", constSpeed)
                 debouncing = 0
 
                 if controller.pitch == None:
