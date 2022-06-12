@@ -230,7 +230,7 @@ class Spacemouse:
 def publisherController():
     controllerpub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
     rospy.init_node('spacemouse_controller_node', anonymous=True)
-    rate = rospy.Rate(10)  # Hz
+    rate = rospy.Rate(100)  # Hz
 
     inputcontroller_msg = Twist()
 
