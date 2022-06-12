@@ -241,8 +241,6 @@ def publisherController():
     active = 0
     while not rospy.is_shutdown():
         active = 0
-        inputcontroller_msg.linear.x = 0
-        inputcontroller_msg.angular.z = 0
 
         try:
             controller.getInterruptMsg()
