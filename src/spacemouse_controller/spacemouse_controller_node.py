@@ -236,8 +236,8 @@ def publisherController():
 
     controller = Spacemouse()
 
+    released = True
     constSpeed = False
-    debouncing = 6
     active = 0
     while not rospy.is_shutdown():
         active = 0
@@ -251,20 +251,21 @@ def publisherController():
             if er.errno == 110:  # Timeout
                 pass
 
+        if controller.lockRotation == None:
+            released = True
+
         if controller.lockRotation:
-            rospy.logdebug("Lock rotation pushed")
-            if debouncing > 5:
-                constSpeed != constSpeed
+            if released:
+                rospy.logdebug("Lock rotation pushed")
+                constSpeed = not constSpeed
                 rospy.logdebug("Toggled speed control, now is set to: " + str(constSpeed))
-                debouncing = 0
+                released = False
 
                 if controller.pitch == None:
                     speed = 0
                 else:
                     speed = controller.pitch / 350 # speed
                 inputcontroller_msg.linear.x = speed
-            else:
-                debouncing = debouncing + 1
 
         if (controller.pitch and not constSpeed):
             active = 1
