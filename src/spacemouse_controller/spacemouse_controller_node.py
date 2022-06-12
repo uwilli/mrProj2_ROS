@@ -237,6 +237,7 @@ def publisherController():
     controller = Spacemouse()
 
     constSpeed = False
+    debouncing = 6
     active = 0
     while not rospy.is_shutdown():
         active = 0
@@ -251,13 +252,17 @@ def publisherController():
                 pass
 
         if controller.lockRotation:
-            constSpeed != constSpeed
+            if debouncing > 5:
+                constSpeed != constSpeed
+                debouncing = 0
 
-            if controller.pitch == None:
-                speed = 0
+                if controller.pitch == None:
+                    speed = 0
+                else:
+                    speed = controller.pitch / 350 # speed
+                inputcontroller_msg.linear.x = speed
             else:
-                speed = controller.pitch / 350 # speed
-            inputcontroller_msg.linear.x = speed
+                debouncing = debouncing + 1
 
         if (controller.pitch and not constSpeed):
             active = 1
