@@ -245,7 +245,7 @@ def publisherController():
 
         try:
             controller.getInterruptMsg()
-
+            
         except usb.core.USBError as er:
             if er.errno == 110: # Timeout
                 pass
@@ -263,7 +263,6 @@ def publisherController():
             controllerpub.publish(inputcontroller_msg)
 
         rate.sleep()
-
 
 
 ######################################################################################################
