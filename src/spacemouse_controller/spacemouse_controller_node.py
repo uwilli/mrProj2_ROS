@@ -78,8 +78,7 @@ class Spacemouse:
     # Timeout for waiting on interrupt, in s. (Milliseconds recommended).
     # Single button presses and following release recognized. Simultaneous several buttons not yet supported.
     def getInterruptMsg(self):
-        usbInt = self.dev.read(0x81, 0x20,
-                               10)  # endpoint address, msg length -> wMaxPacketSize, timeout (optional, device default if not set)
+        usbInt = self.dev.read(0x81, 0x20, 10)  # endpoint address, msg length -> wMaxPacketSize, timeout (optional, device default if not set)
 
         msgType = usbInt[0]
 
@@ -100,7 +99,7 @@ class Spacemouse:
                 print('Joystick released')
                 return
 
-            print('Joystick')
+            #print('Joystick')
 
             self.x = self.__to_int16(self.__tryIndexAbsVal(usbInt, 1), self.__tryIndexAbsVal(usbInt, 2))
             self.y = -1 * self.__to_int16(self.__tryIndexAbsVal(usbInt, 3), self.__tryIndexAbsVal(usbInt, 4))
