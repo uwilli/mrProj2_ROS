@@ -13,15 +13,15 @@ Ros catkin ws for Mobile Robotics project 2 (FHGR).
 #### Added to ~/.bashrc
 
 	# Start ssh-agent and add  key for git
-	eval "$(ssh-agent -s)"
-	ssh-add ~/.ssh/githubFHGR.txt
+	{eval "$(ssh-agent -s)"}  &>/dev/null
+	ssh-add ~/.ssh/githubFHGR.txt 2>/dev/null
 	
 	# Alias definitions 
 	alias ..="cd .."
 	alias sr="source devel/setup.bash"
 	alias ws="cd ~/catkin_ws"
 	alias re="cd ~/catkin_ws && git pull && catkin build && source devel/setup.bash"
-	alias la="cd ~/catkin_ws && roslaunch src/package.launch"
+	alias la="cd ~/catkin_ws && roslaunch src/project.launch"
 	
 	# Functions
 	bd() { catkin build "$1" && source devel/setup.bash; }
