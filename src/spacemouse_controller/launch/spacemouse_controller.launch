@@ -1,4 +1,4 @@
 <launch>
-	<env name="ROSCONSOLE_CONFIG_FILE" value="$(find spacemouse_controller)/config/console_output.conf"/>
+	<env name="ROS_PYTHON_LOG_CONFIG_FILE" value="$(find spacemouse_controller)/config/console_output.conf"/>
 	<node name="spacemouse_controller" pkg="spacemouse_controller" type="spacemouse_controller_node.py" output="screen"/>
 </launch>
