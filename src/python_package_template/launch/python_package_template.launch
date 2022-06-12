@@ -1,4 +1,5 @@
 <?xml version="1.0"?>
 <launch>
+	<env name="ROS_PYTHON_LOG_CONFIG_FILE" value="$(find python_package_template)/config/console_output.conf"/>
 	<node name="python_package_template" pkg="python_package_template" type="python_package_template.py" output="screen"/>
 </launch>

@@ -254,7 +254,6 @@ def publisherController():
 
         if controller.lockRotation:
             if released:
-                rospy.logdebug("Lock rotation pushed")
                 constSpeed = not constSpeed
                 rospy.logdebug("Toggled speed control, now is set to: " + str(constSpeed))
                 released = False
@@ -263,6 +262,8 @@ def publisherController():
                     speed = 0
                 else:
                     speed = controller.pitch / 350 # speed
+
+                rospy.logdebug("Speed set to: " + str(speed))
                 inputcontroller_msg.linear.x = speed
 
         if (controller.pitch and not constSpeed):
