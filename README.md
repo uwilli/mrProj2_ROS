@@ -13,7 +13,7 @@ Ros catkin ws for Mobile Robotics project 2 (FHGR).
 #### Added to ~/.bashrc
 
 	# Start ssh-agent and add  key for git
-	{eval "$(ssh-agent -s)"}  &>/dev/null
+	eval "$(ssh-agent -s)"
 	ssh-add ~/.ssh/githubFHGR.txt 2>/dev/null
 	
 	# Alias definitions 
