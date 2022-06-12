@@ -252,7 +252,13 @@ def publisherController():
 
         if controller.lockRotation:
             constSpeed != constSpeed
-            inputcontroller_msg.linear.x = controller.pitch / 350 # speed
+
+            if controller.pitch == None:
+                speed = 0
+            else:
+                speed = controller.pitch / 350 # speed
+            inputcontroller_msg.linear.x = speed
+
         if (controller.pitch and not constSpeed):
             active = 1
             inputcontroller_msg.linear.x = controller.pitch / 350  # speed
