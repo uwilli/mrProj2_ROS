@@ -238,6 +238,7 @@ def publisherController():
 
     active = 0
     while not rospy.is_shutdown():
+        active = 0
         inputcontroller_msg.linear.x = 0
         inputcontroller_msg.angular.z = 0
 
@@ -251,9 +252,9 @@ def publisherController():
         if (controller.pitch):
             active = 1
             inputcontroller_msg.linear.x = controller.pitch / 350  # speed
-        if (controller.roll):
+        if (controller.yaw):
             active = 1
-            inputcontroller_msg.angular.z = controller.roll / 350  # direction
+            inputcontroller_msg.angular.z = controller.yaw / 350  # direction
 
         # rospy.loginfo(inputcontroller_msg) # prints on rosinfo
         if active:
