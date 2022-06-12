@@ -1,23 +1,23 @@
 #!/usr/bin/env python3
  
 """
-Publishes Twist messages to /cmd_vel, taking joystick input from spacemouse.
+Publishes Twist messages to /cmd_vel, taking joystick input from spacemouse, a 3d-Cad mouse.
 
 Adapted to Spacemouse from publisher for xbox controller which was from Yannik Martin.
 
 Author: Urban Willi
 """
-# I am sure I need these:
+
+######################################################################################################
+# Imports
+######################################################################################################
 import rospy
 import roslib
 from geometry_msgs.msg import Twist
 
-# Not so sure about:
-from re import X
-import time
-import curses
-import atexit
-import struct
+######################################################################################################
+# Functions
+######################################################################################################
 
 def publisherController():
     controllerpub = rospy.Publisher('cmd_vel', Twist, queue_size=1)
@@ -40,6 +40,11 @@ def publisherController():
         controllerpub.publish(inputcontroller_msg)
 
         rate.sleep()
+
+
+######################################################################################################
+# Main
+######################################################################################################
 
 if __name__ == '__main__':
     try:
