@@ -96,7 +96,7 @@ class Spacemouse:
                 self.roll = None
                 self.pitch = None
                 self.yaw = None
-                print('Joystick released')
+                # print('Joystick released')
                 return
 
             #print('Joystick')
@@ -123,7 +123,7 @@ class Spacemouse:
                 self.b3 = None
                 self.b4 = None
                 self.lockRotation = None
-                print('Button released')
+                # print('Button released')
                 return
             # print('Button')
 
@@ -266,9 +266,10 @@ def publisherController():
                 rospy.logdebug("Speed set to: " + str(speed))
                 inputcontroller_msg.linear.x = speed
 
-        if (controller.pitch and not constSpeed):
+        if (controller.pitch):
             active = 1
-            inputcontroller_msg.linear.x = controller.pitch / 350  # speed
+            if not constSpeed:
+                inputcontroller_msg.linear.x = controller.pitch / 350  # speed
         if controller.yaw:
             active = 1
             inputcontroller_msg.angular.z = controller.yaw / 350  # direction
