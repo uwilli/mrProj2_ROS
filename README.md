@@ -1,6 +1,17 @@
 # mrProj2_ROS
 Ros catkin ws for Mobile Robotics project 2 (FHGR).
-Hardware used is a Raspberry Pi 4b (4Gb) and a custom PCB. Check out mrProj2 repository for ROS-independent C++ classes driving the GPIOs with pigpio.
+Hardware used is a Raspberry Pi 4b (4Gb) and a custom PCB. Check out [mrProj2](https://github.com/uwilli/mrProj2) repository for ROS-independent C++ classes driving the GPIOs with pigpio.
+
+Prerequisite: Ros installation (noetic used) on the raspberry pi.
+
+This project includes ROS packages for steering and speed control on a small scale car. It can be commanded via an xbox controller or an 3D Connexion Spacemouse Pro Wireless. Also included are a copy of a package for the 2d Lidar and of the hector_slam package. Links to source below.
+From the hector_slam, basic mapping is setup.
+
+[Demo Video](https://youtu.be/WBXDojHb8BE)
+
+## Open source ROS packages
+[hector_slam](https://github.com/tu-darmstadt-ros-pkg/hector_slam)  
+[rp_lidar_ros](https://github.com/Slamtec/rplidar_ros)
 
 
 ## Ros commands
