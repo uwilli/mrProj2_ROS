@@ -1,5 +1,6 @@
-# mrProj2_ws
+# mrProj2_ROS
 Ros catkin ws for Mobile Robotics project 2 (FHGR).
+Hardware used is a Raspberry Pi 4b (4Gb) and a custom PCB. Check out mrProj2 repository for ROS-independent C++ classes driving the GPIOs with pigpio.
 
 
 ## Ros commands
